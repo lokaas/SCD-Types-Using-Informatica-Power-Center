@@ -1,0 +1,1 @@
+# SCD-Types-Using-Informatica-Power-Center
