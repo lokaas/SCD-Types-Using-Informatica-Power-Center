@@ -95,15 +95,16 @@ This ETL process implements Slowly Changing Dimension (SCD) Type 1 in Informatic
 - **Objective**: Perform an initial data load to the target table.
 - **Data**: Insert 7 employees into the source table.
 
-| employee_id | first_name | last_name | phone_number | salary | hire_date   | commission_pct | department |
-|-------------|------------|-----------|--------------|--------|-------------|----------------|------------|
-| 1           | Michael    | Scott     | 123-456-7890 | 60000  | 2001-01-15  | 0.05           | Sales      |
-| 2           | Dwight     | Schrute   | 234-567-8901 | 55000  | 2004-03-22  | 0.07           | Sales      |
-| 3           | Jim        | Halpert   | 345-678-9012 | 50000  | 2005-06-12  | 0.04           | Sales      |
-| 4           | Pam        | Beesly    | 456-789-0123 | 45000  | 2003-09-19  | 0.03           | Reception  |
-| 5           | Ryan       | Howard    | 567-890-1234 | 40000  | 2006-02-09  | 0.02           | Sales      |
-| 6           | Angela     | Martin    | 678-901-2345 | 55000  | 2002-07-28  | 0.06           | Accounting |
-| 7           | Kevin      | Malone    | 789-012-3456 | 48000  | 2001-05-05  | 0.05           | Accounting |
+| employee_id | first_name | last_name  | phone_number | salary | hire_date   | commission_pct | department |
+|-------------|------------|------------|--------------|--------|-------------|----------------|------------|
+| 1           | JOHN       | DOE        | 123-456-7890 | 5000   | 01-JAN-22   | 0.05           | HR         |
+| 2           | JANE       | SMITH      | 234-567-8901 | 6000   | 15-JUN-21   | 0.07           | IT         |
+| 3           | ALICE      | JOHNSON    | 345-678-9012 | 7000   | 20-MAR-20   | 0.04           | MARKETING  |
+| 4           | BOB        | BROWN      | 456-789-0123 | 5500   | 10-AUG-23   | 0.03           | SALES      |
+| 5           | CAROL      | DAVIS      | 567-890-1234 | 6500   | 05-NOV-22   | 0.02           | FINANCE    |
+| 6           | DAVID      | MARTIN     | 678-901-2345 | 7500   | 25-JAN-21   | 0.06           | HR         |
+| 7           | EMMA       | WILSON     | 789-012-3456 | 8000   | 12-JUL-19   | 0.05           | IT         |
+
 
 **Expected Outcome**: All 7 rows should be inserted into the target table without any updates.
 
@@ -118,8 +119,8 @@ This ETL process implements Slowly Changing Dimension (SCD) Type 1 in Informatic
 
 | employee_id | first_name | last_name | phone_number | salary | hire_date   | commission_pct | department   |
 |-------------|------------|-----------|--------------|--------|-------------|----------------|--------------|
-| 8           | Kelly      | Kapoor    | 123-654-7890 | 42000  | 2014-03-18  | 0.05           | Customer Care|
-| 9           | Phyllis    | Smith     | 234-987-6543 | 48000  | 2011-07-24  | 0.04           | Sales        |
+| 8           | LOKA       | AREF      | 128-835-5572 | 10000  | 15-JUL-22   | 0.09           | ETL          |
+| 9           | VENOM      | DEHA      | 101-072-1210 | 11000  | 05-NOV-20   | 0.08           | AI           |
 
 **Expected Outcome**: These two employees should be inserted into the target table.
 
@@ -130,8 +131,8 @@ This ETL process implements Slowly Changing Dimension (SCD) Type 1 in Informatic
 
 | employee_id | salary | department  |
 |-------------|--------|-------------|
-| 3           | 52000  | HR          |
-| 1           | 65000  | Management  |
+| 3           | 8000   | SALES       |
+| 1           | 9000   | MANAGEMENT  |
 
 **Expected Outcome**: The records for Jim Halpert and Michael Scott should be updated in the target table with new salary and department values.
 
