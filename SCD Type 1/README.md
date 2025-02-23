@@ -110,7 +110,7 @@ This ETL process implements Slowly Changing Dimension (SCD) Type 1 in Informatic
 
 ### Target After First Run
 
-![TGt_After First Run](.png)
+![TGt_After First Run](SCD Type 1/Target After First Run.PNG)
 
 ### Test Case 2: Insertion of New Employees
 
