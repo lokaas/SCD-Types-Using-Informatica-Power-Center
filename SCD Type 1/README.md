@@ -110,7 +110,8 @@ This ETL process implements Slowly Changing Dimension (SCD) Type 1 in Informatic
 
 ### Target After First Run
 
-![TGt_After First Run](SCD-Types-Using-Informatica-Power-Center/SCD%20Type%201/Target%20After%20First%20Run.PNG)
+![TGt_After First Run](https://github.com/lokaas/SCD-Types-Using-Informatica-Power-Center/blob/main/SCD%20Type%201/Target%20After%20First%20Run.PNG)
+
 
 
 
