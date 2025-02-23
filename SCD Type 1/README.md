@@ -142,7 +142,8 @@ This ETL process implements Slowly Changing Dimension (SCD) Type 1 in Informatic
 
 ## 6. Final Data in Target Table (After 2nd Run)
 
-![TGt_After Second Run]([TGT_Data_Second%20Run.png](https://github.com/lokaas/SCD-Types-Using-Informatica-Power-Center/blob/main/SCD%20Type%201/Final%20Data%20in%20Target%20Table%20(After%202nd%20Run).PNG))
+![TGt_After Second Run](https://github.com/lokaas/SCD-Types-Using-Informatica-Power-Center/blob/main/SCD%20Type%201/Final%20Data%20in%20Target%20Table%20(After%202nd%20Run).PNG)
+
 
 ## 7. Conclusion
 
