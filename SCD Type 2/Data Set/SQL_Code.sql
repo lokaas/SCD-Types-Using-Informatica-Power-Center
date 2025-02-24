@@ -7,6 +7,7 @@ EXCEPTION
 END;
 /
 
+
 -- 2. Create the SRC_EMP_SCD2 table (Source Table)
 CREATE TABLE SRC_EMP_SCD2 (
     EMPLOYEE_ID     NUMBER(6) NOT NULL,           -- Unique identifier for each employee
@@ -41,6 +42,7 @@ VALUES (5, 'CAROL', 'DAVIS', '567-890-1234', 6500, TO_DATE('2022-11-05', 'YYYY-M
 SELECT * FROM SRC_EMP_SCD2;
 /
 
+
 -- 1. Check if the target table (TGT_EMP_SCD2) exists and drop it if it does
 BEGIN
     EXECUTE IMMEDIATE 'DROP TABLE TGT_EMP_SCD2';
@@ -50,7 +52,8 @@ EXCEPTION
 END;
 /
 
--- 2. Create the TGT_EMP_SCD2 table (Target Table)
+
+-- 2. Create the TGT_EMP_SCD2 table (Target Table) without a constraint
 CREATE TABLE TGT_EMP_SCD2 (
     emp_key        NUMBER(6),                    -- Surrogate key, manually entered (not auto-generated)
     employee_id    NUMBER(6) NOT NULL,           -- Unique identifier for each employee
@@ -64,10 +67,5 @@ CREATE TABLE TGT_EMP_SCD2 (
     current_flag   CHAR(1)                       -- Indicates if the record is "active" or "inactive" (no default value)
 );
 
--- 3. Add a primary key constraint on the emp_key column
-ALTER TABLE TGT_EMP_SCD2
-ADD CONSTRAINT TGT_EMP_SCD2_PK PRIMARY KEY (emp_key);
-
--- 4. Select data from the TGT_EMP_SCD2 table (Target Table) to view the contents
+-- 3. Select data from the TGT_EMP_SCD2 table (Target Table) to view the contents
 SELECT * FROM TGT_EMP_SCD2;
-/
