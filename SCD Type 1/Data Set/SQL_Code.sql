@@ -1,7 +1,13 @@
--- Drop the existing source table if it exists
-DROP TABLE EMPLOYEE_INFO PURGE;
+-- 1. Check if the source table (EMPLOYEE_INFO) exists and drop it if it does
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE EMPLOYEE_INFO PURGE';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- Ignore the error if the table doesn't exist
+END;
+/
 
--- Create the source table with modified column size for COMMISSION_PCT to support decimal values
+-- 2. Create the source table (Source Table) with modified column size for COMMISSION_PCT to support decimal values
 CREATE TABLE EMPLOYEE_INFO (
     EMPLOYEE_ID     NUMBER(6) NOT NULL,        -- Employee ID
     FIRST_NAME      VARCHAR2(20),              -- Employee's first name
@@ -14,7 +20,7 @@ CREATE TABLE EMPLOYEE_INFO (
     CONSTRAINT EMPLOYEE_PK PRIMARY KEY (EMPLOYEE_ID)  -- Primary key constraint on EMPLOYEE_ID
 );
 
--- Insert sample data into the source table
+-- 3. Insert sample data into the source table
 INSERT INTO EMPLOYEE_INFO (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, PHONE_NUMBER, SALARY, HIRE_DATE, COMMISSION_PCT, DEPARTMENT)
 VALUES (1, 'JOHN', 'DOE', '123-456-7890', 5000, TO_DATE('2022-01-01', 'YYYY-MM-DD'), 0.05, 'HR');
 
@@ -36,14 +42,20 @@ VALUES (6, 'DAVID', 'MARTIN', '678-901-2345', 7500, TO_DATE('2021-01-25', 'YYYY-
 INSERT INTO EMPLOYEE_INFO (EMPLOYEE_ID, FIRST_NAME, LAST_NAME, PHONE_NUMBER, SALARY, HIRE_DATE, COMMISSION_PCT, DEPARTMENT)
 VALUES (7, 'EMMA', 'WILSON', '789-012-3456', 8000, TO_DATE('2019-07-12', 'YYYY-MM-DD'), 0.05, 'IT');
 
--- Verify the data in the source table
+-- 4. Verify the data in the source table (Source Table)
 SELECT * FROM EMPLOYEE_INFO;
+/
 
+-- 1. Check if the target table (TGT_EMPLOYEE_INFO_SCD_T1_PRO) exists and drop it if it does
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE TGT_EMPLOYEE_INFO_SCD_T1_PRO PURGE';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- Ignore the error if the table doesn't exist
+END;
+/
 
--- Drop the target table if it exists
-DROP TABLE TGT_EMPLOYEE_INFO_SCD_T1_PRO PURGE;
-
--- Create the target table with modified column size and added columns for commission and total salary
+-- 2. Create the target table (Target Table) with modified column size and added columns for commission and total salary
 CREATE TABLE TGT_EMPLOYEE_INFO_SCD_T1_PRO (
     EMPLOYEE_ID     NUMBER(6),                -- Employee ID
     FULL_NAME       VARCHAR2(45 BYTE),         -- Employee full name (combined first and last name)
@@ -56,6 +68,6 @@ CREATE TABLE TGT_EMPLOYEE_INFO_SCD_T1_PRO (
     TOTAL_SALARY    NUMBER(10, 2)              -- Total salary including commission
 );
 
-
--- Verify the data in the target table
-SELECT * FROM TGT_EMPLOYEE_INFO_SCD_T1_PRO ;
+-- 3. Verify the data in the target table (Target Table)
+SELECT * FROM TGT_EMPLOYEE_INFO_SCD_T1_PRO;
+/
